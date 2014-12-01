@@ -16,13 +16,14 @@ post '/' do
   puts "requester: #{username}"
   puts "text:      #{text}"
 
-  %r{^(?<number_of_dice>\d+)d(?<die_size>\d+)?\+?(?<plus>\d+)?$} =~ text[5..-1].strip
+  die_request = text[5..-1].strip
+
+  %r{^(?<number_of_dice>\d+)d(?<die_size>\d+)?\+?(?<plus>\d+)?$} =~ die_request
 
   if number_of_dice.nil? or die_size.nil?
     return 200
   end
 
-  die_request = text[6..-1]
   result = DiceBag::Roll.new(die_request).result()
   total = result.total
   tally = result.sections[0].tally
