@@ -16,7 +16,7 @@ post '/' do
   puts "requester: #{username}"
   puts "text:      #{text}"
 
-  %r{^roll: (?<number_of_dice>\d+)d(?<die_size>\d+)?\+?(?<plus>\d+)?$} =~ text
+  %r{^(?<number_of_dice>\d+)d(?<die_size>\d+)?\+?(?<plus>\d+)?$} =~ text[5..-1].strip
 
   if number_of_dice.nil? or die_size.nil?
     return 200
