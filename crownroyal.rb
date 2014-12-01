@@ -3,7 +3,7 @@ require 'sinatra'
 require 'json'
 require 'uri'
 require 'net/http'
-require 'DiceBag'
+require 'dicebag'
 
 
 post '/' do
