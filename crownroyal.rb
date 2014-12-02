@@ -28,8 +28,8 @@ post '/' do
   total = result.total
   tally = result.sections[0].tally
 
-  webhook_url = "https://hooks.slack.com/services/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"
-
+  webhook_url = ENV["SLACK_WEBHOOK_URL"]
+  
   uri = URI(webhook_url)
   https = Net::HTTP.new(uri.host, uri.port)
   https.use_ssl = true
