@@ -35,7 +35,7 @@ post '/' do
   https.use_ssl = true
 
   request = Net::HTTP::Post.new(uri.path, initheader = {'Content-Type' =>'application/json'})
-  request.body = { "text" => "#{username} rolled #{number_of_dice}d#{die_size}#{plus.nil? ? '' : "+" + plus} and got #{total} #{tally}" }.to_json
+  request.body = { "text" => "#{username} rolled #{number_of_dice}d#{die_size}#{plus.nil? ? '' : "+" + plus} and got #{total} #{tally} #{plus.nil? ? '' : "(+" + plus + ")"}" }.to_json
 
   response = https.request(request)
 
