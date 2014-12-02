@@ -29,13 +29,13 @@ post '/' do
   tally = result.sections[0].tally
 
   webhook_url = ENV["SLACK_WEBHOOK_URL"]
-  
+
   uri = URI(webhook_url)
   https = Net::HTTP.new(uri.host, uri.port)
   https.use_ssl = true
 
   request = Net::HTTP::Post.new(uri.path, initheader = {'Content-Type' =>'application/json'})
-  request.body = { "text" => "#{username} rolled #{number_of_dice}d#{die_size} and got #{total} #{tally}" }.to_json
+  request.body = { "text" => "#{username} rolled #{number_of_dice}d#{die_size}#{plus.nil? '' : "+" + plus} and got #{total} #{tally}" }.to_json
 
   response = https.request(request)
 
