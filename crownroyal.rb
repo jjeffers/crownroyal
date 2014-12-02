@@ -13,6 +13,12 @@ class CrownRoyal < Sinatra::Application
   end
 
   def post_result(text)
+
+    if ENV["RACK_ENV"] == "test"
+      puts text
+      return
+    end
+
     webhook_url = ENV["SLACK_WEBHOOK_URL"]
 
     uri = URI(webhook_url)
