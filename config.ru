@@ -1,2 +1,2 @@
 require './crownroyal'
-run Sinatra::Application
+run CrownRoyal
